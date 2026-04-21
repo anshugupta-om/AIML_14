@@ -27,7 +27,7 @@ const registerUser =async(req,res)=> {
         email,
         password: hashedPassword
        });
-       res.status(201).json({
+       res.status(500).json({
         success:true,
         message:"User Registered Successfully",
         data: user
@@ -57,7 +57,7 @@ const loginUser = async(req,res)=>{
         if(!user){
             return res.status(400).json({
                 success:false,
-                message: "Invalid "
+                message: "Invalid  email"
             });
         }
         const isMatch = await bcrypt.compare(password,user.password);
